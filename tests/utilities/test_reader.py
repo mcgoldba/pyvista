@@ -460,6 +460,8 @@ def test_openfoamreader_active_time():
     assert reader.active_time_value == 0.5
     reader.set_active_time_value(1.0)
     assert reader.active_time_value == 1.0
+    with pytest.raises(ValueError):
+        reader.set_active_time_value(50000.0)  # not an existing time point
 
 
 def test_openfoamreader_read_data_time_value():
